@@ -790,7 +790,237 @@ HTML_TEMPLATE = '''
         @keyframes leafRustle2 {
             0%, 100% { transform: rotate(30deg); }
             50% { transform: rotate(35deg); }
-        }   
+        }
+        
+        /* 💫 Partículas de corazones que siguen el cursor */
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+            color: #ff69b4;
+            animation: heartFloat 3s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* 🎵 Visualizador de música */
+        .music-visualizer {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            display: flex;
+            gap: 3px;
+            z-index: 999;
+        }
+
+        .music-bar {
+            width: 4px;
+            background: linear-gradient(to top, #ff1493, #ff69b4, #ffc0cb);
+            border-radius: 2px;
+            animation: musicDance 1s ease-in-out infinite;
+        }
+
+        .music-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+        .music-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+        .music-bar:nth-child(3) { height: 25px; animation-delay: 0.2s; }
+        .music-bar:nth-child(4) { height: 35px; animation-delay: 0.3s; }
+        .music-bar:nth-child(5) { height: 28px; animation-delay: 0.4s; }
+        .music-bar:nth-child(6) { height: 32px; animation-delay: 0.5s; }
+
+        @keyframes musicDance {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1.5); }
+        }
+
+        /* 🌙 Modo nocturno */
+        .night-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        .night-mode .main-title,
+        .night-mode .section-title {
+            color: #ff69b4;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+        }
+
+        .night-mode .photo-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .night-mode .special-message,
+        .night-mode .quote-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 105, 180, 0.4);
+        }
+
+        /* 🌙 Botón de modo nocturno */
+        .night-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .night-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        /* 📸 Slideshow automático */
+        .slideshow-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .slideshow-image {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .slideshow-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+        }
+
+        .slideshow-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 105, 180, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .slideshow-controls:hover {
+            background: rgba(255, 105, 180, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slideshow-prev { left: -60px; }
+        .slideshow-next { right: -60px; }
+
+        .slideshow-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: rgba(220, 20, 60, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        /* 💝 Easter eggs */
+        .easter-egg {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: easterEggPop 2s ease-out forwards;
+            z-index: 1500;
+        }
+
+        @keyframes easterEggPop {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .auto-slideshow-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(255, 105, 180, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .auto-slideshow-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Estrellas para modo nocturno */
+        .star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
     </style>
 </head>
 <body>
@@ -1155,7 +1385,234 @@ HTML_TEMPLATE = '''
         setTimeout(() => createRandomPeony(), 1000);
         setTimeout(() => createRandomPeony(), 2000);
     });
+    // 💫 Partículas de corazones que siguen el cursor
+    let heartParticles = [];
+    const heartEmojis = ['💖', '💕', '💗', '💝', '💘', '💞', '💓', '💟'];
+
+    function createHeartParticle(x, y) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+            if (heart.parentNode) {
+                heart.parentNode.removeChild(heart);
+            }
+        }, 3000);
+    }
+
+    // Seguir el cursor con corazones
+    let lastHeartTime = 0;
+    document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastHeartTime > 200) { // Un corazón cada 200ms
+            lastHeartTime = now;
+            createHeartParticle(e.clientX, e.clientY);
+        }
+    });
+
+    // 🌙 Modo nocturno
+    let isNightMode = false;
+    function toggleNightMode() {
+        const body = document.body;
+        const nightBtn = document.getElementById('nightBtn');
+        
+        if (isNightMode) {
+            body.classList.remove('night-mode');
+            nightBtn.textContent = '🌙';
+            removeStars();
+        } else {
+            body.classList.add('night-mode');
+            nightBtn.textContent = '☀️';
+            createStars();
+        }
+        isNightMode = !isNightMode;
+    }
+
+    // Crear estrellas para modo nocturno
+    function createStars() {
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(star);
+        }
+    }
+
+    function removeStars() {
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => star.remove());
+    }
+
+    // 🎵 Visualizador de música
+    function toggleMusicVisualizer() {
+        const visualizer = document.getElementById('musicVisualizer');
+        if (isPlaying) {
+            visualizer.style.display = 'flex';
+        } else {
+            visualizer.style.display = 'none';
+        }
+    }
+
+    // Actualizar la función toggleMusic existente
+    const originalToggleMusic = toggleMusic;
+    toggleMusic = function() {
+        originalToggleMusic();
+        toggleMusicVisualizer();
+    };
+
+    // 📸 Slideshow automático
+    let slideshowInterval;
+    let currentSlideIndex = 0;
+    let slideshowPhotos = [];
+
+    function startSlideshow() {
+        // Obtener todas las fotos disponibles
+        const photoImages = document.querySelectorAll('.photo-image');
+        slideshowPhotos = Array.from(photoImages).filter(img => img.src && !img.src.includes('placeholder'));
+        
+        if (slideshowPhotos.length === 0) {
+            alert('¡Agrega algunas fotos primero! 📸');
+            return;
+        }
+        
+        currentSlideIndex = 0;
+        document.getElementById('slideshowOverlay').style.display = 'flex';
+        showSlide(currentSlideIndex);
+        
+        // Cambiar foto cada 4 segundos
+        slideshowInterval = setInterval(() => {
+            nextSlide();
+        }, 4000);
+    }
+
+    function showSlide(index) {
+        const img = document.getElementById('slideshowImage');
+        const caption = document.getElementById('slideshowCaption');
+        
+        if (slideshowPhotos[index]) {
+            img.src = slideshowPhotos[index].src;
+            // Obtener el título de la foto
+            const photoCard = slideshowPhotos[index].closest('.photo-card');
+            const title = photoCard ? photoCard.querySelector('.photo-title').textContent : 'Momento especial';
+            const description = photoCard ? photoCard.querySelector('.photo-description').textContent : 'Una memoria hermosa';
+            caption.innerHTML = `<strong>${title}</strong><br>${description}`;
+        }
+    }
+
+    function nextSlide() {
+        currentSlideIndex = (currentSlideIndex + 1) % slideshowPhotos.length;
+        showSlide(currentSlideIndex);
+    }
+
+    function prevSlide() {
+        currentSlideIndex = (currentSlideIndex - 1 + slideshowPhotos.length) % slideshowPhotos.length;
+        showSlide(currentSlideIndex);
+    }
+
+    function closeSlideshow() {
+        document.getElementById('slideshowOverlay').style.display = 'none';
+        if (slideshowInterval) {
+            clearInterval(slideshowInterval);
+        }
+    }
+
+    // 💝 Easter eggs
+    const easterEggMessages = [
+        '🎉 ¡Sorpresa! ¡Eres increíble!',
+        '💖 ¡Mark te ama muchísimo!',
+        '🌟 ¡Eres la estrella más brillante!',
+        '🦋 ¡Eres única y especial!',
+        '🌈 ¡Traes color a mi vida!',
+        '👑 ¡Eres mi reina!',
+        '🎵 ¡Eres la melodía de mi corazón!',
+        '🌸 ¡Eres hermosa como una flor!'
+    ];
+
+    let easterEggCount = 0;
+    function createEasterEgg(x, y) {
+        easterEggCount++;
+        
+        if (easterEggCount % 10 === 0) { // Cada 10 clicks
+            const egg = document.createElement('div');
+            egg.className = 'easter-egg';
+            egg.textContent = easterEggMessages[Math.floor(Math.random() * easterEggMessages.length)];
+            egg.style.left = x + 'px';
+            egg.style.top = y + 'px';
+            egg.style.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            document.body.appendChild(egg);
+            
+            setTimeout(() => {
+                if (egg.parentNode) {
+                    egg.parentNode.removeChild(egg);
+                }
+            }, 2000);
+        }
+    }
+
+    // Detectar clicks para easter eggs
+    document.addEventListener('click', (e) => {
+        createEasterEgg(e.clientX, e.clientY);
+    });
+
+    // Inicializar todo cuando carga la página
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ocultar visualizador inicialmente
+        document.getElementById('musicVisualizer').style.display = 'none';
+        
+        // Mensaje de bienvenida
+        setTimeout(() => {
+            const welcomeEgg = document.createElement('div');
+            welcomeEgg.className = 'easter-egg';
+            welcomeEgg.textContent = '🎂 ¡Feliz Cumpleaños Katherine! 🎂';
+            welcomeEgg.style.left = '50%';
+            welcomeEgg.style.top = '20%';
+            welcomeEgg.style.transform = 'translateX(-50%)';
+            welcomeEgg.style.fontSize = '2.5rem';
+            welcomeEgg.style.color = '#ff69b4';
+            document.body.appendChild(welcomeEgg);
+            
+            setTimeout(() => {
+                if (welcomeEgg.parentNode) {
+                    welcomeEgg.parentNode.removeChild(welcomeEgg);
+                }
+            }, 3000);
+        }, 1000);
+    });
+    
     </script>
+    <!-- Botón de modo nocturno -->
+    <button class="night-toggle" onclick="toggleNightMode()" id="nightBtn">🌙</button>
+
+    <!-- Visualizador de música -->
+    <div class="music-visualizer" id="musicVisualizer">
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+        <div class="music-bar"></div>
+    </div>
+
+    <!-- Botón de slideshow automático -->
+    <button class="auto-slideshow-btn" onclick="startSlideshow()" id="slideshowBtn">📸</button>
+
+    <!-- Slideshow overlay -->
+    <div class="slideshow-overlay" id="slideshowOverlay">
+        <div class="slideshow-container">
+            <button class="slideshow-close" onclick="closeSlideshow()">✕ Cerrar</button>
+            <button class="slideshow-controls slideshow-prev" onclick="prevSlide()">❮</button>
+            <button class="slideshow-controls slideshow-next" onclick="nextSlide()">❯</button>
+            <img class="slideshow-image" id="slideshowImage" src="" alt="">
+            <div class="slideshow-caption" id="slideshowCaption"></div>
+        </div>
+    </div>
+    
     
 </body>
 </html>
